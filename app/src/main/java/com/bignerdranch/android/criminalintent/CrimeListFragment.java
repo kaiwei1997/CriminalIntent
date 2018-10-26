@@ -5,21 +5,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
+
+    private int mClickedItemPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -47,7 +48,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
-            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(mClickedItemPosition);
         }
     }
 
@@ -78,6 +79,8 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
+            mClickedItemPosition = getAdapterPosition();
+            Log.d("CrimeListFragment", "Clicked Item Position: "+ String.valueOf(mClickedItemPosition));
             Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getID());
             startActivity(intent);
         }
