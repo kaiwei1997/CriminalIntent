@@ -109,5 +109,15 @@ public class CrimeListFragment extends Fragment {
         public int getItemCount(){
             return mCrimes.size();
         }
+
+        @Override
+        public int getItemViewType(int position) {
+            Crime crime  = mCrimes.get(position);
+            if(crime.isRequiresPolice()){
+                return R.layout.list_item_crime_police;
+            }else{
+                return R.layout.list_item_crime;
+            }
+        }
     }
 }
