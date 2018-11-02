@@ -38,9 +38,6 @@ public class CrimePagerActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.crime_view_pager);
 
-        mJumpToFirstButton = (Button)findViewById(R.id.btn_jump_to_first);
-        mJumpToLastButton = (Button)findViewById(R.id.btn_jump_to_last);
-
         mCrimes = CrimeLab.get(this).getCrimes();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
@@ -73,11 +70,13 @@ public class CrimePagerActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if(position == 0){
                     mJumpToFirstButton.setEnabled(false);
+                    mJumpToLastButton.setEnabled(true);
                 }else if(position == mCrimes.size() - 1){
                     mJumpToLastButton.setEnabled(false);
+                    mJumpToFirstButton.setEnabled(true);
                 }else{
                     mJumpToFirstButton.setEnabled(true);
-                    mJumpToLastButton.setEnabled(false);
+                    mJumpToLastButton.setEnabled(true);
                 }
             }
 
@@ -87,6 +86,7 @@ public class CrimePagerActivity extends AppCompatActivity {
             }
         });
 
+        mJumpToFirstButton = (Button)findViewById(R.id.btn_jump_to_first);
         mJumpToFirstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +94,7 @@ public class CrimePagerActivity extends AppCompatActivity {
             }
         });
 
+        mJumpToLastButton = (Button)findViewById(R.id.btn_jump_to_last);
         mJumpToLastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
