@@ -129,7 +129,6 @@ public class CrimeListFragment extends Fragment {
             }else{
                 mAdapter.setCrimes(crimes);
                 mAdapter.notifyDataSetChanged();
-                Log.e("log","refresh2 " + String.valueOf(mClickedItemPosition));
             }
         }
 
