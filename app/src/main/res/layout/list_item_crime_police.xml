@@ -37,29 +37,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crime_title" />
 
-    <ImageView
-        android:id="@+id/crime_solved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@string/crime_solved_label"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_solved"
-        android:layout_marginEnd="16dp" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginRight="236dp"
+        android:text="@string/contact_police"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crime_date"
-        app:layout_constraintVertical_bias="1.0"
-        android:text="@string/contact_police"/>
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
