@@ -25,7 +25,7 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
 
-    private int mClickedItemPosition;
+    private int mClickedItemPosition = -1;
 
     private boolean mSubtitleVisible;
 
@@ -114,6 +114,7 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void updateUI() {
+        Log.e("LOg","UpdateUI");
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
@@ -121,7 +122,15 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.notifyItemChanged(mClickedItemPosition);
+            if(mClickedItemPosition > -1) {
+                mAdapter.notifyItemChanged(mClickedItemPosition);
+                Log.e("log","refresh1 " + String.valueOf(mClickedItemPosition));
+                mClickedItemPosition = -1;
+            }else{
+                mAdapter.setCrimes(crimes);
+                mAdapter.notifyDataSetChanged();
+                Log.e("log","refresh2 " + String.valueOf(mClickedItemPosition));
+            }
         }
 
         updateSubtitle();
@@ -164,6 +173,9 @@ public class CrimeListFragment extends Fragment {
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
         private List<Crime> mCrimes;
 
+        public void setCrimes(List<Crime> crimes){
+            mCrimes = crimes;
+        }
         public CrimeAdapter(List<Crime> crimes) {
             mCrimes = crimes;
         }
