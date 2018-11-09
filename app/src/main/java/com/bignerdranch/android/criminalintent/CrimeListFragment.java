@@ -199,7 +199,7 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemViewType(int position) {
             Crime crime = mCrimes.get(position);
-            if (crime.isRequiresPolice() == true) {
+            if (crime.isRequiresPolice()) {
                 return R.layout.list_item_crime_police;
             } else {
                 return R.layout.list_item_crime;
