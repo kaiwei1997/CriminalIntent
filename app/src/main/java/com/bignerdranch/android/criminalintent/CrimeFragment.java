@@ -26,12 +26,15 @@ public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "dialog_date";
+    private static final String DIALOG_TIME = "dialog_time";
 
     private static final int DATE_REQUEST = 0;
+    private static final int TIME_REQUEST = 1;
 
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
+    private Button mTimeButton;
     private CheckBox mSolvedCheckBox;
     private CheckBox mRequirePolice;
 
@@ -70,6 +73,11 @@ public class CrimeFragment extends Fragment {
         mDateButton.setText(df.format(mCrime.getDate()));
     }
 
+    private void updateTime(){
+        DateFormat tf = new SimpleDateFormat("hh:mm:ss a");
+        mTimeButton.setText(tf.format(mCrime.getTime()));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, container, false);
@@ -78,6 +86,7 @@ public class CrimeFragment extends Fragment {
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mRequirePolice = (CheckBox) v.findViewById(R.id.crime_requires_police);
         mDateButton = (Button) v.findViewById(R.id.crime_date);
+        mTimeButton = (Button) v.findViewById(R.id.crime_time);
 
         mTitleField.setText(mCrime.getTitle());
         mTitleField.addTextChangedListener(new TextWatcher() {
@@ -106,6 +115,14 @@ public class CrimeFragment extends Fragment {
                         .newInstance(mCrime.getDate());
                 dialog.setTargetFragment(CrimeFragment.this, DATE_REQUEST);
                 dialog.show(fragmentManager, DIALOG_DATE);
+            }
+        });
+
+        updateTime();
+        mTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
             }
         });
 
