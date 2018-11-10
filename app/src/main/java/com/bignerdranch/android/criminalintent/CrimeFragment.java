@@ -20,8 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.xml.transform.Result;
-
 public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
@@ -64,6 +62,12 @@ public class CrimeFragment extends Fragment {
                     .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
             updateDate();
+        }
+        if(requestCode == TIME_REQUEST){
+            Date time = (Date) data
+                    .getSerializableExtra(TimePickerFragment.EXTRA_TIME);
+            mCrime.setTime(time);
+            updateTime();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -123,6 +127,9 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
+                TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getTime());
+                dialog.setTargetFragment(CrimeFragment.this, TIME_REQUEST);
+                dialog.show(fragmentManager, DIALOG_TIME);
             }
         });
 

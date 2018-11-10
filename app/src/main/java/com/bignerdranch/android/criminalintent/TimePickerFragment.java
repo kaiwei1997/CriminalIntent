@@ -13,22 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TimePicker;
 
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TImePickerFragment extends DialogFragment {
+public class TimePickerFragment extends DialogFragment {
     public static String EXTRA_TIME = "com.bignerdranch.android.criminalintent.time";
 
     private static final String ARG_TIME = "time";
 
     private TimePicker mTimePicker;
 
-    public static TImePickerFragment newINstance(Date time){
+    public static TimePickerFragment newInstance(Date time){
         Bundle args = new Bundle();
         args.putSerializable(ARG_TIME, time);
 
-        TImePickerFragment fragment = new TImePickerFragment();
+        TimePickerFragment fragment = new TimePickerFragment();
         fragment.setArguments(args);
         return fragment;
     }
