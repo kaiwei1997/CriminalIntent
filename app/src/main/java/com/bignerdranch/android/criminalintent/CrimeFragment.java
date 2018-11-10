@@ -78,7 +78,7 @@ public class CrimeFragment extends Fragment {
     }
 
     private void updateTime(){
-        DateFormat tf = new SimpleDateFormat("hh:mm:ss a");
+        DateFormat tf = new SimpleDateFormat("hh:mm a");
         mTimeButton.setText(tf.format(mCrime.getTime()));
     }
 

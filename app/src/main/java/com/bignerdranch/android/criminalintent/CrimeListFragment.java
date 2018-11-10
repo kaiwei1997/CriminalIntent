@@ -140,6 +140,7 @@ public class CrimeListFragment extends Fragment {
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
+        private TextView mTimeTextView;
         private ImageView mSolvedImageView;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
@@ -148,15 +149,19 @@ public class CrimeListFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
+            mTimeTextView = (TextView) itemView.findViewById(R.id.crime_time);
             mSolvedImageView = (ImageView) itemView.findViewById(R.id.crime_solved);
         }
 
         public void bind(Crime crime) {
             mCrime = crime;
             DateFormat df = new SimpleDateFormat("E, MMMM dd, yyyy");
+            DateFormat tf = new SimpleDateFormat("hh:mm a");
             String formatDate = df.format(mCrime.getDate());
+            String formatTime = tf.format(mCrime.getTime());
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(formatDate);
+            mTimeTextView.setText(formatTime);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
         }
 
