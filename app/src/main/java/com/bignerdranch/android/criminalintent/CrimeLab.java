@@ -37,7 +37,7 @@ public class CrimeLab {
     }
 
     public void removeCrime(Crime c){
-        mCrimes.remove(c);
+        mCrimes.remove(c.getID());
     }
 
     public List<Crime> getCrimes(){
