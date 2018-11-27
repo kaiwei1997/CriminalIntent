@@ -147,14 +147,14 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
-            if(mClickedItemPosition > -1) {
+            /**if(mClickedItemPosition > -1) {
                 mAdapter.notifyItemChanged(mClickedItemPosition);
                 Log.e("log","refresh1 " + String.valueOf(mClickedItemPosition));
                 mClickedItemPosition = -1;
-            }else{
+            }else{**/
                 mAdapter.setCrimes(crimes);
                 mAdapter.notifyDataSetChanged();
-            }
+            //}
         }
 
         updateSubtitle();
